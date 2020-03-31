@@ -1,5 +1,5 @@
 [loadbalancers]
-localhost ansible_user=nginx
+localhost ansible_user=workshop
 
 
 [loadbalancers:vars]

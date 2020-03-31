@@ -2,23 +2,29 @@
 
 ## Install NGINX Plus using Ansible:
 
-1. ssh into your VM using the username workshop and password Nginx1122!
-2. Set your hostname with: 
-   1. >sudo hostnamectl set-hostname yourname 
-3. Install our required dependencies for the workshop.
-   1. >cd NGINX-Ansible-Controller-Workshop
-   2. >sh 0-install-required-dependencies.sh
-4. Verify that nginx is not running
-   1. >curl localhost
-5. Take a look at the playbook and note the host groups that will be targeted (loadbalancers). Also view the hosts files to see which host(s) will be updated. 
-   1. >cat nginx_plus.yaml
-   2. >cat hosts
-   3. >cat nginx_plus_vars.yaml
-6. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
-   1. Full command: 
+1. Navigate to UDF <https://udf.f5.com/courses> and login with creditials that were emailed to you from noreply@registration.udf.f5.com
+2. You should see an event Happening now. Click on the Launch link at the far right.
+3. Click the Jion button.
+4. On the top of the page, click on the Deployment tab. Note that the VM will take a minute to provision and will be ready when you have a green arrow next to the nginx-plus VM.
+5. To use your VM, click the "Access" link on the NGINX-Plus host and use the Web Shell
+6. Note that in the web shell to paste on Windows, use ctrl-shift-v
+7. You will be logged in as root, first we will change your hostname and we will instead use the ubuntu account for the remainder of the workshop.
+   1. hostnamectl set-hostname yourname
+   2. >su ubuntu
+9.  Install our required dependencies for the workshop.
+   2. >cd ~/NGINX-Ansible-Controller-Workshop
+   3. >sh 0-install-required-dependencies.sh
+10. Verify that nginx is not running
+   4. >curl localhost
+11. Take a look at the playbook and note the host groups that will be targeted (loadbalancers). Also view the hosts files to see which host(s) will be updated. 
+   5. >cat nginx_plus.yaml
+   6. >cat hosts
+   7. >cat nginx_plus_vars.yaml
+12. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
+   8. Full command: 
          >ansible-playbook nginx_plus.yaml -b -i hosts
-   2. Scripted equivalent
-         >sh 1-run-nginx_plus-playbook.sh
+   9. Scripted equivalent
+         >./1-run-nginx_plus-playbook.sh
 
 ## Open the Controller GUI / Install agent on VM
 

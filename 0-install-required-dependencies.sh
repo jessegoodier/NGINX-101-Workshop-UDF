@@ -9,3 +9,4 @@ ansible-galaxy install nginxinc.nginx
 ansible-galaxy install nginxinc.nginx_controller_generate_token
 ansible-galaxy install nginxinc.nginx_controller_agent
 sudo chmod 755 *.sh
+ssh-keyscan -H localhost > ~/.ssh/known_hosts
