@@ -111,9 +111,10 @@
     2.  >sh 3-run-jwt-curl.sh
 
 
+
 Optional, if you have time:
 
 57. Add an alert for too many 500 errors.
 58. Create a dashboard that you think might be useful in a NOC.
-59. Access the Developer API Management Portal: <http://3.19.238.184:8090>
+59. Access the Developer API Management Portal: <http://3.16.124.236:8090/docs>
 Feel free to browse around the GUI to see other functionality. 
