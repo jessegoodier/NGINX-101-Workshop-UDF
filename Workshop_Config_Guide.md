@@ -12,8 +12,8 @@
    1. >hostnamectl set-hostname yourname
    2. >su ubuntu
 9.  Install our required dependencies for the workshop.
-   2. >cd ~/NGINX-Ansible-Controller-Workshop
-   3. >sh 0-install-required-dependencies.sh
+   2. >cd ~/NGINX-101-Workshop-UDF
+   3. >sudo sh 0-install-required-dependencies.sh
 10. Verify that nginx is not running
    4. >curl localhost
 11. Take a look at the playbook and note the host groups that will be targeted (loadbalancers). Also view the hosts files to see which host(s) will be updated. 
