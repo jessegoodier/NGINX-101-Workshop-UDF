@@ -43,5 +43,3 @@
     - name: Install the NGINX Controller agent
       include_role:
         name: nginxinc.nginx_controller_agent
-      vars:
-        api_key1: "{{ api_key }}"

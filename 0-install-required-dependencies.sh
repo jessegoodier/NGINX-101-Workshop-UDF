@@ -1,9 +1,8 @@
 #!/bin/bash
-apt update
-apt -y install python2.7 jq
-apt install software-properties-common
 apt-add-repository --yes --update ppa:ansible/ansible
-apt -y install ansible
+apt-get update
+apt-get -y install python2.7 jq software-properties-common ansible
+
 ansible-galaxy install nginxinc.nginx 
 ansible-galaxy install nginxinc.nginx_controller_agent
 ansible-galaxy install nginxinc.nginx_controller_generate_token
