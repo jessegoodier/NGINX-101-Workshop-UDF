@@ -2,9 +2,9 @@
   gather_facts: yes
   vars:
     controller:
-      user_email: "admin@nginx.com"
-      user_password: "Nginx1122!"
-      fqdn: "controller1.ddns.net"
+      user_email: "{{ user_email }}"
+      user_password: "{{ user_password }}"
+      fqdn: "{{ controller_fqdn }}"
       validate_certs: false
 
   tasks:
