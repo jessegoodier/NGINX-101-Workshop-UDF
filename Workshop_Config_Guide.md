@@ -90,11 +90,10 @@
 1. Navigate to Services>APIs and view the workload group. (ergast.com:80)
 2. On API Definitions create your "F1 Yourname" API with base path /api/f1
 3. Hit save and add URI /seasons and /drivers. Enable documentation with response 200 and {"response":"2009"} as an example (you can make this up, it is just for future developers who might consume this API resource)
-4. Click Add A Published API f1_api in Production and select the app you created "yourname_f1_app"
-5. Select the entry point, click save.
-6. Scroll to the bottom and add the routes to the resources we created.
-7. Publish and wait for the success message.
-8. curl a few of these examples:
+4. Click Add A Published API f1_api in Production and select the app you created earlier.
+5. Scroll to the bottom and add the routes to the resources we created.
+6. Publish and wait for the success message.
+7. curl a few of these examples:
 
    ```
       curl -k http://localhost/api/f1/seasons
@@ -103,11 +102,11 @@
       curl -k http://localhost/api/f1/drivers/arnold.json
    ```
 
-9. Edit your published API and add a rate limit policy.
-10. Publish and test a couple more requests.
-11. Review the JWT Identity Provider under the API Managment Section. A JWT has been configured. It is in this repo, named auth_jwt_key_file.jwk.
-12. Go back to your API Definition and edit your published API to require an Authentication Policy using the JWT Provider.
-13. Publish and test a curl command using this token (which is in the script in option 2). Alternatively, use postman.
+8. Edit your published API and add a rate limit policy.
+9. Publish and test a couple more requests.
+10. Review the JWT Identity Provider under the API Managment Section. A JWT has been configured. It is in this repo, named auth_jwt_key_file.jwk.
+11. Go back to your API Definition and edit your published API to require an Authentication Policy using the JWT Provider.
+12. Publish and test a curl command using this token (which is in the script in option 2). Alternatively, use postman.
     1. >curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
     2. >sh 3-run-jwt-curl.sh
 
