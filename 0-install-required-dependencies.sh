@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 apt-add-repository --yes --update ppa:ansible/ansible
 apt-get update
 apt-get -y install python2.7 jq software-properties-common ansible
