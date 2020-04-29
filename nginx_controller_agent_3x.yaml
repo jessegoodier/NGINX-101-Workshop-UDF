@@ -1,4 +1,10 @@
 - hosts: loadbalancers
+  gather_facts: yes
+  vars:
+    nginx_controller_user_email: "admin@nginx.com"
+    nginx_controller_user_password: "Nginx1122!"
+    nginx_controller_fqdn: "controller1.ddns.net"
+    nginx_controller_validate_certs: false
 
   tasks:
     - name: Upgrade your packages
