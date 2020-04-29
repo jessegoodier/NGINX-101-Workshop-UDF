@@ -2,7 +2,7 @@
 
 ## Install NGINX Plus using Ansible
 
-1. Navigate to UDF <https://udf.f5.com/courses> and login with creditials that were emailed to you from noreply@registration.udf.f5.com
+1. Using chrome (ideally), navigate to UDF <https://udf.f5.com/courses> and login with creditials that were emailed to you from noreply@registration.udf.f5.com
 2. You should see an event Happening now. Click on the Launch link at the far right.
 3. Click the join button.
 4. On the top of the page, click on the Deployment tab. Note that the VM will take a minute to provision and will be ready when you have a green arrow next to the nginx-plus VM.
@@ -16,11 +16,13 @@
    2. >sudo sh 0-install-required-dependencies.sh
 9. Verify that nginx is not running
 10. >curl localhost
-11. Take a look at the playbook and note the host groups that will be targeted (loadbalancers). Also view the hosts files to see which host(s) will be updated.
+11. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
 12. >cat nginx_plus.yaml
 13. >cat hosts
 14. >cat nginx_plus_vars.yaml
-15. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
+15. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move them to the correct folder for the scripts to work.
+    1. cp ~/nginx-repo.* license/
+16. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
     1. Full command:
          >ansible-playbook nginx_plus.yaml -b -i hosts
     2. Scripted equivalent
@@ -69,7 +71,7 @@
 26. Navigate back to the UDF Deployment page and under the nginx-plus VM, click access and http refresh the browser to see time change.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. >sudo nginx -T
-28. Repeat steps 24-35 adding a component for time2 and point it to <http://3.20.98.115:82>
+28. Repeat steps 24-35 adding a component for time2 and point it to <http://3.1.50.39:82>
 29. Add another component and name it both.
 30. Select your gateway.
 31. In the URI section add: /both
@@ -77,7 +79,7 @@
 33. Click on Workload groups and add a workload group called both
 34. Add both of our backend workoad URIs:
     1. <http://3.20.98.115:81>
-    2. <http://3.20.98.115:82>
+    2. <http://3.1.50.39:82>
 35. Test the new configuration with a few curl commands on your SSH session:
     1. curl localhost/time1
     2. curl localhost/time2
@@ -90,7 +92,7 @@
 1. Navigate to Services>APIs and view the workload group. (ergast.com:80)
 2. On API Definitions create your "F1 Yourname" API with base path /api/f1
 3. Hit save and add URI /seasons and /drivers. Enable documentation with response 200 and {"response":"2009"} as an example (you can make this up, it is just for future developers who might consume this API resource)
-4. Click Add A Published API f1_api in Production and select the app you created earlier.
+4. Click Add A Published API f1_api in Production and select the app you created earlier (yourname-app).
 5. Scroll to the bottom and add the routes to the resources we created.
 6. Publish and wait for the success message.
 7. curl a few of these examples:
