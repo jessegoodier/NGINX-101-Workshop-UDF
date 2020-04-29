@@ -1,11 +1,10 @@
-- hosts: localhost
+ hosts: loadbalancers
   gather_facts: yes
   vars:
-    controller:
-      user_email: "{{ user_email }}"
-      user_password: "{{ user_password }}"
-      fqdn: "{{ controller_fqdn }}"
-      validate_certs: false
+    nginx_controller_user_email: "admin@nginx.com"
+    nginx_controller_user_password: "Nginx1122!"
+    nginx_controller_fqdn: "controller1.ddns.net"
+    nginx_controller_validate_certs: false
 
   tasks:
     - name: Upgrade your packages
@@ -27,18 +26,18 @@
 
     - name: Get NGINX Controller API key for agent registration
       uri:
-        url: "https://{{ controller.fqdn }}/api/v1/platform/global"
+        url: "https://{{ nginx_controller_fqdn }}/api/v1/platform/global"
         method: "GET"
         return_content: yes
         status_code: 200
-        validate_certs: "{{ controller.validate_certs | default(false) }}"
+        validate_certs: "{{ nginx_controller_validate_certs | default(false) }}"
         headers:
-          Cookie: "{{ controller.auth_token }}"
-      register: ctrl_globals
+          Cookie: "{{ nginx_controller_auth_token }}"
+      register: nginx_controller_globals
 
     - name: Copy api_key to a variable
       set_fact:
-        api_key: "{{ ctrl_globals.json.currentStatus.agentSettings.apiKey }}"
+        nginx_controller_api_key: "{{ nginx_controller_globals.json.currentStatus.agentSettings.apiKey }}"
 
     - name: Install the NGINX Controller agent
       include_role:
