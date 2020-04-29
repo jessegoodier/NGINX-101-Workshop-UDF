@@ -1,9 +1,4 @@
 - hosts: loadbalancers
-  remote_user: ubuntu
-  become: true
-  become_method: sudo
-  gather_facts: yes
-
 
   tasks:
     - name: Upgrade your packages
