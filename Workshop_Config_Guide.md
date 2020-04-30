@@ -3,12 +3,13 @@
 ## Install NGINX Plus using Ansible
 
 1. Using chrome (ideally), navigate to UDF <https://udf.f5.com/courses> and login with creditials that were emailed to you from noreply@registration.udf.f5.com
-2. You should see an event Happening now. Click on the Launch link at the far right.
-3. Click the join button.
-4. On the top of the page, click on the Deployment tab. Note that the VM will take a minute to provision and will be ready when you have a green arrow next to the nginx-plus VM.
-5. To use your VM, click the "Access" link on the NGINX-Plus host and use the Web Shell
-6. Note that in the web shell to paste on Windows, use ctrl-shift-v
-7. You will be logged in as root, first we will change your hostname and we will instead use the ubuntu account for the remainder of the workshop.
+2. You should see an event **Happening** now. Click on the Launch link at the far right.
+3. Click the **Join** button.
+4. On the top of the page, click on the **Deployment** tab. 
+   1. **Note:** that the VM will take a minute to provision and will be ready when you have a green arrow next to the nginx-plus VM.
+5. To use your VM, click the **Access** link on the NGINX-Plus host and use the **Web Shell**.
+   1. **Note:** In the web shell use **ctrl-shift-v** paste.
+7. You will be logged in as root, change your hostname and change to the **ubuntu** account for the remainder of the workshop.
    1. >hostnamectl set-hostname yourname
    2. >su ubuntu
 8. Install our required dependencies for the workshop.
@@ -20,7 +21,7 @@
 12. >cat nginx_plus.yaml
 13. >cat hosts
 14. >cat nginx_plus_vars.yaml
-15. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move them to the correct folder for the scripts to work.
+15. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
     1. cp ~/nginx-repo.* license/
 16. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
     1. Full command:
@@ -42,18 +43,26 @@
 
 1. Go back to the Controller GUI and go to the Infrastructure>Graphs page
 2. Wait for the new instance to appear and then feel free to change the alias by clicking the settings (gear icon) so it is easy for you to find.
-3. Click on the NGINX logo and select Services.
-4. Go to the Gateways
-5. Create a new gateway, call it yourname-gw
-6. Put it in the production environment and hit next.
-7. In the Placements, select your NGINX instance, hit next.
+
+### Configure a Gateway.
+
+The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server (similar to virtual server) blocks 
+
+3. Click on the NGINX logo and select **Services**.
+4. Go to **Gateways**
+5. Create a new gateway, call it *yourname*-gw
+6. A the bottom, under **Environment**, select **production** and hit next.
+7. In the **Placements**, select your NGINX instance, hit next.
 8. Under the hostnames, add
    1. http://nginx.ddns.net
    2. https://nginx.ddns.net
-   3. Be sure to hit done after adding each URI.
-9. Select the nginx.ddns.net certificate and select all protocols.
+   3. Be sure to hit **Done** after adding each URI.
+   4. In **Cert Reference** select the **nginx.ddns.net** certificate and then select all **Protocols**.
 10. Feel free to view the optional configuration options.
-11. Publish the gateway and wait on the Gateways screen until your status is green.
+11. Publish the gateway by clicking on **Submit**. Wait on the **Gateways** screen until the gateway status is green.
+
+### Configure Apps
+
 12. On the leftmost column hit Apps to show the My Apps menu > select overview. Click one of the buttons that say Create App.
 13. Name your app yourname-app and put it in the production environment.
 14. Hit submit.
