@@ -129,7 +129,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 30. Select your gateway.
 31. In the URI section add: **/both**
 32. Click **Done**.
-33. Click on **Workload Groups** and add a workload group called **both** with a uri of **/both**
+33. Click on **Workload Groups** and add a workload group called **both** with a uri of **/both**.
 34. Add both of our backend workoad URIs:
     1. <http://3.20.98.115:81>
     2. <http://3.1.50.39:82>
@@ -141,10 +141,11 @@ Components are created from the app overview page. If you are on the **My Apps**
     4. **curl -k <https://localhost/both>**
        1. Showing that https is working.
 
-
 ## Configure API Management
 
-1. Navigate to **Services** > **APIs* and view the workload group named **ergast** (ergast.com:80).
+API management is a, for cost, add-on module to NGINX controller.
+
+1. Navigate to **Services** > **APIs** and view the workload group named **ergast** (ergast.com:80).
 2. Now select **API Definitions** and click **Create an API Definition**.
    1. Name you API **F1 *Yourname* API** 
    2. Set the *Base path* to **/api/f1**
@@ -153,11 +154,18 @@ Components are created from the app overview page. If you are on the **My Apps**
    1. In the **Path** enter **/seasons** and check the **Enable Documentation** box.
    2. Click the **Add Response** button and enter a name **Good** and description **200 OK**.  
    3. In the box below enter **{"response":"200"}** 
-   
-   **/drivers**. Enable documentation with response 200 and {"response":"200"} as an example (you can make this up, it is just for future developers who might consume this API resource)
-4. Click Add A Published API f1_api in Production and select the app you created earlier (yourname-app).
-5. Scroll to the bottom and add the routes to the resources we created.
-6. Publish and wait for the success message.
+      1. These responses are not required and are can be things like a basic footprint for future development.
+   4. Add an additional URI **/drivers** and add the same response.
+4. Click **Add A Published API**
+      1. The *Published API Name* is **f1_*yourname*_api**
+      2. The *Environment is **production** 
+      3. The *Application* is your application you created earlier.
+      4. The *Gateway* is the gateway you created earlier.
+      5. Click on **Save**
+5. Scroll to the bottom to **Routes**, click **Add a route** and add routes to the resources we created.
+   1. URI **/drivers (GET)** Workload Group **ergast**
+   2. URI **/seasons (GET)** Workload Group **ergast**
+6. **Publish** and wait for the success message.
 7. curl a few of these examples:
 
    ```
