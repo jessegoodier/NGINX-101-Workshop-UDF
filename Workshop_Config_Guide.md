@@ -144,9 +144,17 @@ Components are created from the app overview page. If you are on the **My Apps**
 
 ## Configure API Management
 
-1. Navigate to Services>APIs and view the workload group. (ergast.com:80)
-2. On API Definitions create your "F1 Yourname" API with base path /api/f1
-3. Hit save and add URI /seasons and /drivers. Enable documentation with response 200 and {"response":"2009"} as an example (you can make this up, it is just for future developers who might consume this API resource)
+1. Navigate to **Services** > **APIs* and view the workload group named **ergast** (ergast.com:80).
+2. Now select **API Definitions** and click **Create an API Definition**.
+   1. Name you API **F1 *Yourname* API** 
+   2. Set the *Base path* to **/api/f1**
+   3. Hit **Save**
+3. Now in the **URIs** box click **Add a URI**
+   1. In the **Path** enter **/seasons** and check the **Enable Documentation** box.
+   2. Click the **Add Response** button and enter a name **Good** and description **200 OK**.  
+   3. In the box below enter **{"response":"200"}** 
+   
+   **/drivers**. Enable documentation with response 200 and {"response":"200"} as an example (you can make this up, it is just for future developers who might consume this API resource)
 4. Click Add A Published API f1_api in Production and select the app you created earlier (yourname-app).
 5. Scroll to the bottom and add the routes to the resources we created.
 6. Publish and wait for the success message.
