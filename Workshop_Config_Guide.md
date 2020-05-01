@@ -63,6 +63,8 @@ The Gateway is for traffic aggregation for ingress into the network & nginx inst
 
 ### Configure Apps
 
+Apps are customer specified collection of components/traffic that constitutes an application or microservice. 
+
 12. On the leftmost column hit Apps to show the My Apps menu > select overview. Click one of the buttons that say Create App.
 13. Name your app yourname-app and put it in the production environment.
 14. Hit submit.
