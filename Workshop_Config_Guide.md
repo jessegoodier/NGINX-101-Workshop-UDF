@@ -58,7 +58,7 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 
 ### Configure a Gateway.
 
-The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server (similar to virtual server) blocks 
+The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server blocks.  A server block is similiar to a virtual server on a BIG-IP. 
 
 3. Click on the NGINX logo and select **Services**.
 4. Go to **Gateways**
