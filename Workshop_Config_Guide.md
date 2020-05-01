@@ -91,13 +91,23 @@ Components are created from the app overview page. If you are on the **My Apps**
 22. Add the backend workload URI: <http://3.20.98.115:81>
 23. Be sure to hit **Done** in the *URI* box after adding the URI.
 24. Hit **Submit**.
-25. Wait for the green Configured status underneath time1.
-26. Navigate back to the UDF Deployment page and under the nginx-plus VM, click access and http refresh the browser to see time change.
-27. View the changes made to /etc/nginx/nginx.conf on your host.
-    1. >sudo nginx -T
-28. Repeat steps 24-35 adding a component for time2 and point it to <http://3.1.50.39:82>
+25. Wait for the *green* **Status:** Configured next to time1 in the app Overview page or Components section.  If it spins for more than a couple of minutes just hit refresh to see if it finished.
 
-**** Add a another component
+**** Check your work
+
+26. Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**.  At the command prompt.
+    1. **curl localhost/time1**
+       1. This should return the timestamp page for API_SERVER: API1
+27. View the changes made to /etc/nginx/nginx.conf on your host.
+    1. **sudo nginx -T**
+       1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
+28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://3.1.50.39:82> by repeating steps 24-35.
+    1. Go back to the **Web Console**
+       1. **curl localhost/time2**
+       2. **sudo nginx -T**
+          1. You should see a new upstream section for time2
+
+**** Create a load balanced component
 
 29. Add another component and name it **both**.
 30. Select your gateway.
