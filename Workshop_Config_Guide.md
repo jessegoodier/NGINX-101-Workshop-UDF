@@ -72,7 +72,7 @@ Apps are customer specified collection of components/traffic that constitutes an
  
  #### Add Components to your app
  
-You need to create a Components for your app. Components let you partition an App into smaller, self-contained pieces that are each responsible for a particular function of the overall application.  Components map backend workloads/code/microservices needing traffic routing and services for your app. Each Component contains an ingress definition that includes the fully-qualified domain names (FQDNs) and URIs from clients.  Components are basically a collection of location blocks (paths) and upstreams (server pools).
+You need to create Components for your app. Components let you partition an App into smaller, self-contained pieces that are each responsible for a particular function of the overall application.  Components map backend workloads/code/microservices needing traffic routing and services for your app. Each Component contains an ingress definition that includes the fully-qualified domain names (FQDNs) and URIs of servers.  Components are basically a collection of location blocks (paths) and upstreams (server pools).
 
 Components are created from the app overview page. If you are on the **My Apps** overvew page listing all the apps you can get to your app overview page by clicking on the app link or hovering over the app box which will expose the following icons to the far right, Delete (trash can), Edit (pen and paper), View (eyeball).  Selecting **View** will also take you to the overview page for that specific app.  Hit **Create Component** in the upper-right or select **Create Component** under *Quick Actions* on the inner side-bar.
 
