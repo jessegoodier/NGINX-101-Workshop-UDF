@@ -30,12 +30,12 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
     1. **cat hosts**
     1. **cat nginx_plus_vars.yaml**
 11. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
-    1. **cp ~/nginx-repo.* license/**
+    1. **cp ~/nginx-repo.\* license/**
 12. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
     1. Full command:
          **ansible-playbook nginx_plus.yaml -b -i hosts**
     2. Scripted equivalent
-         **./1-run-nginx_plus-playbook.sh**
+         **sh 1-run-nginx_plus-playbook.sh**
 
 ## Open the Controller GUI / Install agent on VM
 
@@ -43,7 +43,9 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 2. Click the upper left NGINX logo and Infrastructure section>graphs. Note that your instance isn't there.
 3. Go back to your ssh session and run the controller agent install playbook. (use option 1 or 2)
     1. Full command:
-       **ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"**
+       ```
+          ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"
+       ``` 
     2. Scripted Equivalent:
        **sh 2-run-nginx_controller_agent_3x-playbook.sh**
 
