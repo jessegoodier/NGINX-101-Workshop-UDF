@@ -1,8 +1,6 @@
 # Workshop Config Guide
 
-## Install NGINX Plus using Ansible
-
-### Accessing the labs
+## Accessing the labs
 
 You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome is the preferred browser for access.
 
@@ -17,6 +15,9 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
    2. Click on the **Deployment** tab. Note that the **nginx-plus** VM will take a minute to provision and will be ready when you have a green arrow.
 5. To access the nginx-plus VM, click the **Access** link and select **Web Shell** from the drop-down menu
 6. **NOTE**: To paste into the web shell use **ctrl-shift-v**
+
+## Install NGINX Plus using Ansible
+
 7. You will be logged in as root, let's first modify the hostname and then we will use the substitue user command (su) to use the **ubuntu** account for the remainder of the workshop.
    1. **hostnamectl set-hostname** *yourname*
    2. **su ubuntu**
@@ -40,7 +41,7 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 ## Open the Controller GUI / Install agent on VM
 
 1. Open <https://controller1.ddns.net> (User: admin@nginx.com / Nginx1122!)
-2. Click the upper left NGINX logo and Infrastructure section>graphs. Note that your instance isn't there.
+2. Click the upper left NGINX logo, then click on **Infrastructure** and then **Graphs**. Note that your instance isn't there.
 3. Go back to your ssh session and run the controller agent install playbook. (use option 1 or 2)
     1. Full command:
        ```
