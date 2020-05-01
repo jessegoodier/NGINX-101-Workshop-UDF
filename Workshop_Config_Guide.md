@@ -83,9 +83,11 @@ Components are created from the app overview page. If you are on the **My Apps**
 20. Click **Next** through the optional configuration items until you get to **Workload Groups**.  
 
 **Workload Group**s, aka *upstream* in NGINX are server pools that you can proxy request to.  They are commonly used for defining either a web server cluster for load balancing, or an app server cluster for routing / load balancing.
+
 21. In **Workload Groups**, in *Workload Group Name* enter **time1**.
 
 **Backend Workload URIs** are the servers that comprise the Workload Group, aka upstream server, (ie. pool member)
+
 22. Add the backend workload URI: <http://3.20.98.115:81>
 23. Be sure to hit **Done** in the *URI* box after adding the URI.
 24. Hit **Submit**.
@@ -94,10 +96,13 @@ Components are created from the app overview page. If you are on the **My Apps**
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. >sudo nginx -T
 28. Repeat steps 24-35 adding a component for time2 and point it to <http://3.1.50.39:82>
-29. Add another component and name it both.
+
+**** Add a another component
+
+29. Add another component and name it **both**.
 30. Select your gateway.
-31. In the URI section add: /both
-32. Click done.
+31. In the URI section add: **/both**
+32. Click **Done**cu.
 33. Click on Workload groups and add a workload group called both
 34. Add both of our backend workoad URIs:
     1. <http://3.20.98.115:81>
