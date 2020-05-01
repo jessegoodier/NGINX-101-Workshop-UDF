@@ -61,24 +61,26 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server blocks.  A server block is similiar to a virtual server on a BIG-IP. 
 
 3. Click on the NGINX logo and select **Services**.
-4. Go to **Gateways**
-5. Create a new gateway, call it *yourname*-gw
+4. Go to **Gateways** and select the **Create** button (upper right) or **Create Gateway** under *Quick Actions*.
+5. Create a new gateway, call it ***yourname*-gw**
 6. A the bottom, under **Environment**, select **production** and hit next.
-7. In the **Placements**, select your NGINX instance, hit next.
+7. In the **Placements**, select your NGINX instance, hit **Next**.
 8. Under the hostnames, add
    1. http://nginx.ddns.net
    2. https://nginx.ddns.net
    3. Be sure to hit **Done** after adding each URI.
-   4. In **Cert Reference** select the **nginx.ddns.net** certificate and then select all **Protocols**.
+   4. In **Cert Reference** select the **nginx.ddns.net** certificate.
+   5. In **Protocols** select **All* protocols.
 10. Feel free to view the optional configuration options.
 11. Publish the gateway by clicking on **Submit**. Wait on the **Gateways** screen until the gateway status is green.
+    1. **NOTE:** You may have to enlarge the window or use the slide-bar to see the status.  You and also click on the circle next to the gateway name. 
 
 ### Create Apps
 
-Apps are customer specified collection of components/traffic that constitutes an application or microservice. 
+Apps are customer specified collections of components/traffic that constitute an application or microservice. 
 
-12. On the leftmost column hit **Apps** to show the *My Apps* menu and select **Overview** to show the current list of Apps.  Click on  **Create App** under *Quick Actions* or just hit the **Create** button in the upper right.
-13. Name your new app *yourname*-app and under **Environment** select the **production**.
+12. On the leftmost column hit **Apps** to show the *My Apps* menu and select **Overview** to show the current list of Apps.    Click on **Create App** under *Quick Actions* or just hit the **Create** button in the upper right.
+13. Name your new app ***yourname*-app** and under **Environment** select the **production**.
 14. Hit **Submit**.
 15. You should be an taken to an *Overview* of the app you just created.  To see a list of all apps click on **Apps** on the side-bar. 
  
@@ -89,12 +91,12 @@ You need to create Components for your app. Components let you partition an App 
 Components are created from the app overview page. If you are on the **My Apps** overvew page listing all the apps you can get to your app overview page by clicking on the app link or hovering over the app box which will expose the following icons to the far right, Delete (trash can), Edit (pen and paper), View (eyeball).  Selecting **View** will also take you to the overview page for that specific app.  Hit **Create Component** in the upper-right or select **Create Component** under *Quick Actions* on the inner side-bar.
 
 16. In the **Configuration** section *Name* the first component **time1**.
-17. In the **Gateways** section, select your gateway you configured earlier. **It is important you select only the gateway you created**
+17. In the **Gateways** section, select your gateway you configured earlier. **Because this is a shared environment where everyone is building the exact same app it is important you select only the gateway you created**
 18. In the **URIs** section, select **Add URI** (link is on top right of screen) and enter the *URI*: **/time1**
 19. *Important* hit **Done** in the URI box.
 20. Click **Next** through the optional configuration items until you get to **Workload Groups**.  
 
-**Workload Group**s, aka *upstream* in NGINX are server pools that you can proxy request to.  They are commonly used for defining either a web server cluster for load balancing, or an app server cluster for routing / load balancing.
+**Workload Group**s, aka *upstream* in NGINX, are server pools that you can proxy request to.  They are commonly used for defining either a web server cluster for load balancing, or an app server cluster for URI routing/load balancing.
 
 21. In **Workload Groups**, in *Workload Group Name* enter **time1**.
 
@@ -110,6 +112,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 26. Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**.  At the command prompt.
     1. **curl localhost/time1**
        1. This should return the timestamp page for API_SERVER: API1
+    2. Alternately you should be able to select **http** from the **Access** drop-down.  You will the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. **sudo nginx -T**
        1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
