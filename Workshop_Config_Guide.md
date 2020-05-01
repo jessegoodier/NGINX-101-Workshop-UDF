@@ -77,7 +77,7 @@ You need to create a Components for your app. Components let you partition an Ap
 Components are created from the app overview page. If you are on the **My Apps** overvew page listing all the apps you can get to your app overview page by clicking on the app link or hovering over the app box which will expose the following icons to the far right, Delete (trash can), Edit (pen and paper), View (eyeball).  Selecting **View** will also take you to the overview page for that specific app.  Hit **Create Component** in the upper-right or select **Create Component** under *Quick Actions* on the inner side-bar.
 
 16. In the **Configuration** section *Name* the first component **time1**.
-17. In the **Gateways** section, select your gateway you configured earlier.
+17. In the **Gateways** section, select your gateway you configured earlier. **It is important you select only the gateway you created**
 18. In the **URIs** section, select **Add URI** (link is on top right of screen) and enter the *URI*: **/time1**
 19. *Important* hit **Done** in the URI box.
 20. Click **Next** through the optional configuration items until you get to **Workload Groups**.  
