@@ -2,10 +2,6 @@
 
 ## Install NGINX Plus using Ansible
 
-# Workshop Config Guide
-
-## Install NGINX Plus using Ansible
-
 ### Accessing the labs
 
 You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome is the preferred browser for access.
