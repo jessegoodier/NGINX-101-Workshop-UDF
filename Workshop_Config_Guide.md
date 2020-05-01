@@ -41,8 +41,8 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 ## Open the Controller GUI / Install agent on VM
 
 1. Open <https://controller1.ddns.net> (User: admin@nginx.com / Nginx1122!)
-2. Click the upper left NGINX logo, then click on **Infrastructure** and then **Graphs**. Note that your instance isn't there.
-3. Go back to your ssh session and run the controller agent install playbook. (use option 1 or 2)
+2. Click the upper left NGINX logo, then click on **Infrastructure**. Note that an instance with your hostname isn't there.
+3. Go back to your **Web Shell** session and run the controller agent install playbook. (use Option 1 or 2 below)
     1. Full command:
        ```
           ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"
@@ -52,8 +52,9 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 
 ## Configure Load Balancing Within Controller GUI
 
-1. Go back to the Controller GUI and go to the Infrastructure>Graphs page
-2. Wait for the new instance to appear and then feel free to change the alias by clicking the settings (gear icon) so it is easy for you to find.
+1. Go back to the Controller GUI and go to the **Infrastructure** Overview page.
+2. Wait for the new instance to appear and then feel free to change the alias by clicking the **Edit** that appears to the right when hover over your instance
+3.  Select **Graphs** on the side bar and then your instance.  You can also edit the name here by clicking on the gear icon next to your instance name.
 
 ### Configure a Gateway.
 
