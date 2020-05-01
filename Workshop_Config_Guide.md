@@ -2,14 +2,26 @@
 
 ## Install NGINX Plus using Ansible
 
-1. Using chrome (ideally), navigate to UDF <https://udf.f5.com/courses> and login with creditials that were emailed to you from noreply@registration.udf.f5.com
-2. You should see an event **Happening** now. Click on the Launch link at the far right.
-3. Click the **Join** button.
-4. On the top of the page, click on the **Deployment** tab. 
-   1. **Note:** that the VM will take a minute to provision and will be ready when you have a green arrow next to the nginx-plus VM.
-5. To use your VM, click the **Access** link on the NGINX-Plus host and use the **Web Shell**.
-   1. **Note:** In the web shell use **ctrl-shift-v** paste.
-7. You will be logged in as root, change your hostname and change to the **ubuntu** account for the remainder of the workshop.
+# Workshop Config Guide
+
+## Install NGINX Plus using Ansible
+
+### Accessing the labs
+
+You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome is the preferred browser for access.
+
+1. Open your browser, preferably Chrome and navigate to F5 UDF <https://udf.f5.com/courses>
+   1. Select the **Non-F5 Users** option and log in using you UDF credentials.
+      1. If this is your first time accessing UDF you should have received an email from noreply@registration.udf.f5.com with your credentials and asking you to reset your passsword.   
+      2. **IMPORTANT** You should retain these credentials, as they will be required to any access future courses you attend in the F5 UDF environment.
+2. You should see the event(s) under **Happening now**. Find the NGINX 101 Workshop event and click on the **Launch** link at the far right. 
+3. Click the **Join** button.  Manage SSH Keys should not be required. 
+4. At the top you will see **Documentation** and **Deployment**.
+   1. In the **Documentation** section you can elect to leave the session, see how long the session last and other documentation
+   2. Click on the **Deployment** tab. Note that the **nginx-plus** VM will take a minute to provision and will be ready when you have a green arrow.
+5. To access the nginx-plus VM, click the **Access** link and select **Web Shell** from the drop-down menu
+6. **NOTE**: To paste into the web shell use **ctrl-shift-v**
+7. You will be logged in as root, let's first modify the hostname and then we will use the substitue user command (su) to use the **ubuntu** account for the remainder of the workshop.
    1. **hostnamectl set-hostname** *yourname*
    2. **su ubuntu**
 8. Install our required dependencies for the workshop.
