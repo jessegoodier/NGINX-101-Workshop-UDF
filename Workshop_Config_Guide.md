@@ -80,11 +80,15 @@ Components are created from the app overview page. If you are on the **My Apps**
 17. In the **Gateways** section, select your gateway you configured earlier.
 18. In the **URIs** section, select **Add URI** (link is on top right of screen) and enter the *URI*: **/time1**
 19. *Important* hit **Done** in the URI box.
-20. Click **Next** through the optional configuration items until you get to **Workload Groups**.  Workload Groups, aka *upstream* in NGINX are server pools that you can proxy request to.  They are commonly used for defining either a web server cluster for load balancing, or an app server cluster for routing / load balancing.
+20. Click **Next** through the optional configuration items until you get to **Workload Groups**.  
+
+**Workload Group**s, aka *upstream* in NGINX are server pools that you can proxy request to.  They are commonly used for defining either a web server cluster for load balancing, or an app server cluster for routing / load balancing.
 21. In **Workload Groups**, in *Workload Group Name* enter **time1**.
+
+**Backend Workload URIs** are the servers that comprise the Workload Group, aka upstream server, (ie. pool member)
 22. Add the backend workload URI: <http://3.20.98.115:81>
-23. Be sure to hit done after adding the URI.
-24. Hit publish.
+23. Be sure to hit **Done** in the *URI* box after adding the URI.
+24. Hit **Submit**.
 25. Wait for the green Configured status underneath time1.
 26. Navigate back to the UDF Deployment page and under the nginx-plus VM, click access and http refresh the browser to see time change.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
