@@ -10,24 +10,24 @@
 5. To use your VM, click the **Access** link on the NGINX-Plus host and use the **Web Shell**.
    1. **Note:** In the web shell use **ctrl-shift-v** paste.
 7. You will be logged in as root, change your hostname and change to the **ubuntu** account for the remainder of the workshop.
-   1. >hostnamectl set-hostname yourname
-   2. >su ubuntu
+   1. **hostnamectl set-hostname** *yourname*
+   2. **su ubuntu**
 8. Install our required dependencies for the workshop.
-   1. >cd ~/NGINX-101-Workshop-UDF
-   2. >sudo sh 0-install-required-dependencies.sh
+   1. **cd ~/NGINX-101-Workshop-UDF**
+   2. **sudo sh 0-install-required-dependencies.sh**
 9. Verify that nginx is not running
-10. >curl localhost
+10. **curl localhost**
 11. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
-12. >cat nginx_plus.yaml
-13. >cat hosts
-14. >cat nginx_plus_vars.yaml
+12. **cat nginx_plus.yaml**
+13. **cat hosts**
+14. **cat nginx_plus_vars.yaml**
 15. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
-    1. cp ~/nginx-repo.* license/
+    1. **cp ~/nginx-repo.* license/**
 16. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
     1. Full command:
-         >ansible-playbook nginx_plus.yaml -b -i hosts
+         **ansible-playbook nginx_plus.yaml -b -i hosts**
     2. Scripted equivalent
-         >./1-run-nginx_plus-playbook.sh
+         **./1-run-nginx_plus-playbook.sh**
 
 ## Open the Controller GUI / Install agent on VM
 
@@ -35,9 +35,9 @@
 2. Click the upper left NGINX logo and Infrastructure section>graphs. Note that your instance isn't there.
 3. Go back to your ssh session and run the controller agent install playbook. (use option 1 or 2)
     1. Full command:
-       >ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"
+       **ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"**
     2. Scripted Equivalent:
-       >sh 2-run-nginx_controller_agent_3x-playbook.sh
+       **sh 2-run-nginx_controller_agent_3x-playbook.sh**
 
 ## Configure Load Balancing Within Controller GUI
 
