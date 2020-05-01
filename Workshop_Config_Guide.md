@@ -16,14 +16,14 @@
    1. **cd ~/NGINX-101-Workshop-UDF**
    2. **sudo sh 0-install-required-dependencies.sh**
 9. Verify that nginx is not running
-10. **curl localhost**
-11. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
-12. **cat nginx_plus.yaml**
-13. **cat hosts**
-14. **cat nginx_plus_vars.yaml**
-15. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
+   1. **curl localhost**
+10. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
+    1. **cat nginx_plus.yaml**
+    1. **cat hosts**
+    1. **cat nginx_plus_vars.yaml**
+11. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
     1. **cp ~/nginx-repo.* license/**
-16. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
+12. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
     1. Full command:
          **ansible-playbook nginx_plus.yaml -b -i hosts**
     2. Scripted equivalent
