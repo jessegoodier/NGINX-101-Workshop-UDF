@@ -61,14 +61,20 @@ The Gateway is for traffic aggregation for ingress into the network & nginx inst
 10. Feel free to view the optional configuration options.
 11. Publish the gateway by clicking on **Submit**. Wait on the **Gateways** screen until the gateway status is green.
 
-### Configure Apps
+### Create Apps
 
 Apps are customer specified collection of components/traffic that constitutes an application or microservice. 
 
-12. On the leftmost column hit Apps to show the My Apps menu > select overview. Click one of the buttons that say Create App.
-13. Name your app yourname-app and put it in the production environment.
-14. Hit submit.
-15. You should be brought to the Apps list and you see your app listed. We need to create a Component for your app. There are numerous ways to create this first component one of which is to hover over your app and hit the eye icon under the View column. This page provides an Overview for this entire app. Hit Create Component near the upper-right corner of the page.
+12. On the leftmost column hit **Apps** to show the *My Apps* menu and select **Overview** to show the current list of Apps.  Click on  **Create App** under *Quick Actions* or just hit the **Create** button in the upper right.
+13. Name your new app *yourname*-app and under **Environment** select the **production**.
+14. Hit **Submit**.
+15. You should be an taken to an *Overview* of the app you just created.  To see a list of all apps click on **Apps** on the side-bar. 
+ 
+ #### Add Components to your app
+ 
+You need to create a Components for your app. Components maps backend workloads/code/microservices needing traffic routing and services to your app. Components are basically a collection of location blocks (paths) and upstreams (server pools).
+
+There are numerous ways to create this first component one of which is to hover over your app and hit the eye icon under the View column. This page provides an Overview for this entire app. Hit Create Component near the upper-right corner of the page.
 16. Name the first component time1
 17. In the Gateways section, select your gateway.
 18. In the URI section, add (link is on top right of screen) uri: /time1
