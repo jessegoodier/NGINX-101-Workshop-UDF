@@ -111,8 +111,10 @@
 12. Publish and test a curl command using this token (which is in the script in option 2). Alternatively, use postman.
     1. >curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
     2. >sh 3-run-jwt-curl.sh
+13. If you want to check out the format of the JWT above, use <jwt.io> The secret is: fantasticjwt
+    1. To build your own, see the guide here: <https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/>
 
-Etra credit, if you have time:
+Extra credit, if you have time:
 
 1. Add an alert for too many 500 errors.
 2. Create a dashboard that you think might be useful in a NOC.
