@@ -149,10 +149,14 @@ Components are created from the app overview page. If you are on the **My Apps**
 10. Review the JWT Identity Provider under the API Managment Section. A JWT has been configured. It is in this repo, named auth_jwt_key_file.jwk.
 11. Go back to your API Definition and edit your published API to require an Authentication Policy using the JWT Provider.
 12. Publish and test a curl command using this token (which is in the script in option 2). Alternatively, use postman.
-    1. >curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
-    2. >sh 3-run-jwt-curl.sh
 
-Etra credit, if you have time:
+   ```
+       curl -H "Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
+   ```
+    
+2. >sh 3-run-jwt-curl.sh
+
+Extra credit, if you have time:
 
 1. Add an alert for too many 500 errors.
 2. Create a dashboard that you think might be useful in a NOC.
