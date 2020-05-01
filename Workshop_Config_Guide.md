@@ -93,7 +93,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 24. Hit **Submit**.
 25. Wait for the *green* **Status:** Configured next to time1 in the app Overview page or Components section.  If it spins for more than a couple of minutes just hit refresh to see if it finished.
 
-**** Check your work
+#### Check your work
 
 26. Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**.  At the command prompt.
     1. **curl localhost/time1**
@@ -104,25 +104,28 @@ Components are created from the app overview page. If you are on the **My Apps**
 28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://3.1.50.39:82> by repeating steps 24-35.
     1. Go back to the **Web Console**
        1. **curl localhost/time2**
+          1. 1. This should return the timestamp page for API_SERVER: API**2**
        2. **sudo nginx -T**
           1. You should see a new upstream section for time2
 
-**** Create a load balanced component
+#### Create a load balanced component
 
 29. Add another component and name it **both**.
 30. Select your gateway.
 31. In the URI section add: **/both**
-32. Click **Done**cu.
-33. Click on Workload groups and add a workload group called both
+32. Click **Done**.
+33. Click on **Workload Groups** and add a workload group called **both** with a uri of **/both**
 34. Add both of our backend workoad URIs:
     1. <http://3.20.98.115:81>
     2. <http://3.1.50.39:82>
 35. Test the new configuration with a few curl commands on your SSH session:
-    1. curl localhost/time1
-    2. curl localhost/time2
-    3. curl localhost/both (run it several times to see the round robin)
-    4. curl -k <https://localhost/both> (to test https is working)
-    5. you can also test using the public IP of your VM in a browser
+    1. **curl localhost/time1**
+    2. **curl localhost/time2**
+    3. **curl localhost/both**
+       1. Run it several times to see the round robin functionality
+    4. **curl -k <https://localhost/both>**
+       1. Showing that https is working.
+
 
 ## Configure API Management
 
