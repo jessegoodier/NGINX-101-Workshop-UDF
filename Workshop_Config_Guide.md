@@ -143,7 +143,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 
 ## Configure API Management
 
-API management is a, for cost, add-on module to NGINX controller.
+API management is a, for cost, add-on module to NGINX controller.  In this section you will configure API definitions which will automatically add components to your app.
 
 1. Navigate to **Services** > **APIs** and view the workload group named **ergast** (ergast.com:80).
 2. Now select **API Definitions** and click **Create an API Definition**.
@@ -176,15 +176,34 @@ API management is a, for cost, add-on module to NGINX controller.
    ```
 
 8. Edit your published API and add a rate limit policy.
-9. Publish and test a couple more requests.
-10. Review the JWT Identity Provider under the API Managment Section. A JWT has been configured. It is in this repo, named auth_jwt_key_file.jwk.
-11. Go back to your API Definition and edit your published API to require an Authentication Policy using the JWT Provider.
-12. Publish and test a curl command (below) using the authorization token or do a "**sh 3-run-jwt-curl.sh**".
+   1. Select **Add a policy** in the **Policies** section
+      1. Set your **Policy Type** to **Rate Limit** and key off of URI with a limit of 10 requests per minute.
+      2. Go to the UDF Web Shell and run the following command numerous times:
+         ```
+         curl -i http://localhost/api/f1/drivers/arnold.json
+         ```
+         1. After approximately 10 request you should get the 429 "Too Many Requests" response
+         2. **NOTE:** If you rate limit didn't seem to take effect make sure you **Published** the new changes.  If you did not you will see *Edited since last publish* in your API box on the API Definitions overview page.
+9. Once you are done testing you can set your rate limit policy to a higher limit or remove it.
+
+### Adding authentication to you APIs
+
+10. Review the JWT **Identity Provider** under the **API Managment** Section. A JWT has been pre-configured. It is in this GitHub repo and named **auth_jwt_key_file.jwk**.
+11. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token** 
+12. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script "**sh 3-run-jwt-curl.sh**".
 
    ```
-       curl -H "Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
+      curl -i http://localhost/api/f1/drivers/arnold.json
+      curl -H "Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
    ```
-   
+13.  The first command should return a *401 Authorization Required* response.  The second command should authenticate and return the page successfully.
+
+#### Building your own JWT/JWKs tokens
+
+1. If you want to check out the format of the JWT above, use <jwt.io> The secret is: **fantasticjwt**
+2. To build your own, see the guide here to create your jwk: <https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/>
+3. And this to build your jwt: <https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus>
+
 Extra credit, if you have time:
 
 1. Add an alert for too many 500 errors.
