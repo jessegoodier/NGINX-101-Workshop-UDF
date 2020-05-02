@@ -190,7 +190,8 @@ API management is a, for cost, add-on module to NGINX controller.  In this secti
 
 10. Review the JWT **Identity Provider** under the **API Managment** Section. A JWT has been pre-configured. It is in this GitHub repo and named **auth_jwt_key_file.jwk**.
 11. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token** 
-12. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script "**sh 3-run-jwt-curl.sh**".
+12. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script.   
+    1. **sh 3-run-jwt-curl.sh**.
 
    ```
       curl -i http://localhost/api/f1/drivers/arnold.json
@@ -200,13 +201,17 @@ API management is a, for cost, add-on module to NGINX controller.  In this secti
 
 #### Building your own JWT/JWKs tokens
 
-1. If you want to check out the format of the JWT above, use <jwt.io> The secret is: **fantasticjwt**
-2. To build your own, see the guide here to create your jwk: <https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/>
-3. And this to build your jwt: <https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus>
+1. If you want to check out the format of the JWT above, use <https://jwt.io> The secret is: **fantasticjwt**
+2. To build your own:
+   1. See the guide on NGINX.com to create your jwk: <https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/>
+   2. And  to build your jwt go to: <https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus>
 
-Extra credit, if you have time:
+## Extra credit
+
+If you have time and are so inclinned.
 
 1. Add an alert for too many 500 errors.
 2. Create a dashboard that you think might be useful in a NOC.
 3. Access the Developer API Management Portal: <http://3.16.124.236:8090/docs>
-Feel free to browse around the GUI to see other functionality.
+
+***Feel free to browse around the GUI to see other functionality.***
