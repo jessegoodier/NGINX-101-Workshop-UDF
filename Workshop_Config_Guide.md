@@ -23,7 +23,7 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
    2. **su ubuntu**
 8. Install our required dependencies for the workshop.
    1. **cd ~/NGINX-101-Workshop-UDF**
-   2. **sudo sh 0-install-required-dependencies.sh**
+   2. **sudo sh 0-install-required-dependencies.sh**  (ignore git errors about local changes conflicting)
 9. Verify that nginx is not running
    1. **curl localhost**
 10. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
@@ -37,6 +37,7 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
          **ansible-playbook nginx_plus.yaml -b -i hosts**
     2. Scripted equivalent
          **sh 1-run-nginx_plus-playbook.sh**
+    Note the output at the end of the command should look something like this: ok=15   changed=7    unreachable=0    failed=0 
 
 ## Open the Controller GUI / Install agent on VM
 
@@ -49,7 +50,8 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
        ``` 
     2. Scripted Equivalent:
        **sh 2-run-nginx_controller_agent_3x-playbook.sh**
-
+    Note the output at the end of the command should look something like this: ok=15   changed=3    unreachable=0    failed=0
+    
 ## Configure Load Balancing Within Controller GUI
 
 1. Go back to the Controller GUI and go to the **Infrastructure** Overview page.
