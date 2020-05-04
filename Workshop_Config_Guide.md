@@ -212,6 +212,6 @@ If you have time and are so inclinned.
 
 1. Add an alert for too many 500 errors.
 2. Create a dashboard that you think might be useful in a NOC.
-3. Access the Developer API Management Portal: <http://3.16.124.236:8090/docs>
+3. Access the Developer API Management Portal: <http://3.17.10.66:8090/docs>
 
 ***Feel free to browse around the GUI to see other functionality.***
