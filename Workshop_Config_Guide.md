@@ -111,10 +111,10 @@ Components are created from the app overview page. If you are on the **My Apps**
 
 #### Check your work
 
-26. Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**.  At the command prompt.
-    1. **curl localhost/time1**
+26. You can either go back the shell and run a curl or use the browser.
+    1. Shell option: **curl localhost/time1**
        1. This should return the timestamp page for API_SERVER: API1
-    2. Alternately you should be able to select **http** from the **Access** drop-down.  You will the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1.
+    2. If you prefer a browser: back in the UDF web console Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**. You will get the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. **sudo nginx -T**
        1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
@@ -141,11 +141,11 @@ Components are created from the app overview page. If you are on the **My Apps**
     3. **curl localhost/both**
        1. Run it several times to see the round robin functionality
     4. **curl -k <https://localhost/both>**
-       1. Showing that https is working.
+       1. Showing that https is listening/working.
 
 ## Configure API Management
 
-API management is a, for cost, add-on module to NGINX controller.  In this section you will configure API definitions which will automatically add components to your app.
+API management is an add-on module to NGINX controller.  In this section you will configure API definitions which will automatically add components to your app.
 
 1. Navigate to **Services** > **APIs** and view the workload group named **ergast** (ergast.com:80).
 2. Now select **API Definitions** and click **Create an API Definition**.
@@ -160,7 +160,7 @@ API management is a, for cost, add-on module to NGINX controller.  In this secti
    4. Add an additional URI **/drivers** and add the same response.
 4. Click **Add A Published API**
       1. The *Published API Name* is **f1_*yourname*_api**
-      2. The *Environment is **production** 
+      2. The *Environment is **production**
       3. The *Application* is your application you created earlier.
       4. The *Gateway* is the gateway you created earlier.
       5. Click on **Save**
