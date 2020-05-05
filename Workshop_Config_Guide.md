@@ -164,7 +164,7 @@ API management is an add-on module to NGINX controller.  In this section you wil
 }
 ```
 
-4. These responses are not required and are can be things like a basic footprint for future development.
+4. This detail is added to the developer portal which is accessed at the end of this workshop. These responses are not required, but will be beneficial to the developers looking for how to access these published APIs in the future.
 5. Add an additional URI **/drivers** and add the response:
 
 ```
