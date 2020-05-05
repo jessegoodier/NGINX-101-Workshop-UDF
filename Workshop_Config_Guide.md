@@ -154,21 +154,41 @@ API management is an add-on module to NGINX controller.  In this section you wil
    3. Hit **Save**
 3. Now in the **URIs** box click **Add a URI**
    1. In the **Path** enter **/seasons** and check the **Enable Documentation** box.
-   2. Click the **Add Response** button and enter a name **Good** and description **200 OK**.  
-   3. In the box below enter **{"response":"200"}** 
-      1. These responses are not required and are can be things like a basic footprint for future development.
-   4. Add an additional URI **/drivers** and add the same response.
-4. Click **Add A Published API**
+   2. Click the **Add Response** button, enter a response code 200 and enter a description OK.
+   3. In the box below add
+
+   ```
+   {
+          "season": "1978",
+          "url": "https://en.wikipedia.org/wiki/1978_Formula_One_season"
+   }
+   ```
+
+4. These responses are not required and are can be things like a basic footprint for future development.
+5. Add an additional URI **/drivers** and add the response:
+
+```
+{
+          "driverId": "arundell",
+          "url": "http://en.wikipedia.org/wiki/Peter_Arundell",
+          "givenName": "Peter",
+          "familyName": "Arundell",
+          "dateOfBirth": "1933-11-08",
+          "nationality": "British"
+}
+```
+
+6. Click **Add A Published API**
       1. The *Published API Name* is **f1_*yourname*_api**
       2. The *Environment is **production**
       3. The *Application* is your application you created earlier.
       4. The *Gateway* is the gateway you created earlier.
       5. Click on **Save**
-5. Scroll to the bottom to **Routes**, click **Add a route** and add routes to the resources we created.
+7. Scroll to the bottom to **Routes**, click **Add a route** and add routes to the resources we created.
    1. URI **/drivers (GET)** Workload Group **ergast**
    2. URI **/seasons (GET)** Workload Group **ergast**
-6. **Publish** and wait for the success message.
-7. curl a few of these examples:
+8. **Publish** and wait for the success message.
+9.  curl a few of these examples:
 
    ```
       curl -k http://localhost/api/f1/seasons
@@ -177,7 +197,7 @@ API management is an add-on module to NGINX controller.  In this section you wil
       curl -k http://localhost/api/f1/drivers/arnold.json
    ```
 
-8. Edit your published API and add a rate limit policy.
+11. Edit your published API and add a rate limit policy.
    1. Select **Add a policy** in the **Policies** section
       1. Set your **Policy Type** to **Rate Limit** and key off of URI with a limit of 10 requests per minute.
       2. Go to the UDF Web Shell and run the following command numerous times:
@@ -186,7 +206,7 @@ API management is an add-on module to NGINX controller.  In this section you wil
          ```
          1. After approximately 10 request you should get the 429 "Too Many Requests" response
          2. **NOTE:** If you rate limit didn't seem to take effect make sure you **Published** the new changes.  If you did not you will see *Edited since last publish* in your API box on the API Definitions overview page.
-9. Once you are done testing you can set your rate limit policy to a higher limit or remove it.
+12. Once you are done testing you can set your rate limit policy to a higher limit or remove it.
 
 ### Adding authentication to you APIs
 
