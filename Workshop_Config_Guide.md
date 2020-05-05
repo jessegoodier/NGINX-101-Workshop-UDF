@@ -6,10 +6,10 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 
 1. Open your browser, preferably Chrome and navigate to F5 UDF <https://udf.f5.com/courses>
    1. Select the **Non-F5 Users** option and log in using you UDF credentials.
-      1. If this is your first time accessing UDF you should have received an email from noreply@registration.udf.f5.com with your credentials and asking you to reset your passsword.   
+      1. If this is your first time accessing UDF you should have received an email from noreply@registration.udf.f5.com with your credentials and asking you to reset your passsword.
       2. **IMPORTANT** You should retain these credentials, as they will be required to any access future courses you attend in the F5 UDF environment.
-2. You should see the event(s) under **Happening now**. Find the NGINX 101 Workshop event and click on the **Launch** link at the far right. 
-3. Click the **Join** button.  Manage SSH Keys should not be required. 
+2. You should see the event(s) under **Happening now**. Find the NGINX 101 Workshop event and click on the **Launch** link at the far right.
+3. Click the **Join** button.  Manage SSH Keys should not be required.
 4. At the top you will see **Documentation** and **Deployment**.
    1. In the **Documentation** section you can elect to leave the session, see how long the session last and other documentation
    2. Click on the **Deployment** tab. Note that the **nginx-plus** VM will take a minute to provision and will be ready when you have a green arrow.
@@ -56,18 +56,18 @@ You will be access the labs using the F5 Unified Demo Framework (UDF).  Chrome i
 
 1. Go back to the Controller GUI and go to the **Infrastructure** Overview page.
 2. Wait for the new instance to appear and then feel free to change the alias by clicking the **Edit** that appears to the right when hover over your instance
-3.  Select **Graphs** on the side bar and then your instance.  You can also edit the name here by clicking on the gear icon next to your instance name.
+3. Select **Graphs** on the side bar and then your instance.  You can also edit the name here by clicking on the gear icon next to your instance name.
 
-### Configure a Gateway.
+### Configure a Gateway
 
-The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server blocks.  A server block is similiar to a virtual server on a BIG-IP. 
+The Gateway is for traffic aggregation for ingress into the network & nginx instances, which is a collection of server blocks.  A server block is similiar to a virtual server on a BIG-IP.
 
-3. Click on the NGINX logo and select **Services**.
-4. Go to **Gateways** and select the **Create** button (upper right) or **Create Gateway** under *Quick Actions*.
-5. Create a new gateway, call it ***yourname*-gw**
-6. A the bottom, under **Environment**, select **production** and hit next.
-7. In the **Placements**, select your NGINX instance, hit **Next**.
-8. Under the hostnames, add
+4. Click on the NGINX logo and select **Services**.
+5. Go to **Gateways** and select the **Create** button (upper right) or **Create Gateway** under *Quick Actions*.
+6. Create a new gateway, call it ***yourname*-gw**
+7. A the bottom, under **Environment**, select **production** and hit next.
+8. In the **Placements**, select your NGINX instance, hit **Next**.
+9. Under the hostnames, add
    1. http://nginx.ddns.net
    2. https://nginx.ddns.net
    3. Be sure to hit **Done** after adding each URI.
@@ -75,7 +75,7 @@ The Gateway is for traffic aggregation for ingress into the network & nginx inst
    5. In **Protocols** select **All* protocols.
 10. Feel free to view the optional configuration options.
 11. Publish the gateway by clicking on **Submit**. Wait on the **Gateways** screen until the gateway status is green.
-    1. **NOTE:** You may have to enlarge the window or use the slide-bar to see the status.  You and also click on the circle next to the gateway name. 
+    1. **NOTE:** You may have to enlarge the window or use the slide-bar to see the status.  You and also click on the circle next to the gateway name.
 
 ### Create Apps
 
@@ -85,9 +85,9 @@ Apps are customer specified collections of components/traffic that constitute an
 13. Name your new app ***yourname*-app** and under **Environment** select the **production**.
 14. Hit **Submit**.
 15. You should be an taken to an *Overview* of the app you just created.  To see a list of all apps click on **Apps** on the side-bar. 
- 
- #### Add Components to your app
- 
+
+#### Add Components to your app
+
 You need to create Components for your app. Components let you partition an App into smaller, self-contained pieces that are each responsible for a particular function of the overall application.  Components map backend workloads/code/microservices needing traffic routing and services for your app. Each Component contains an ingress definition that includes the fully-qualified domain names (FQDNs) and URIs of servers.  Components are basically a collection of location blocks (paths) and upstreams (server pools).
 
 Components are created from the app overview page. If you are on the **My Apps** overvew page listing all the apps you can get to your app overview page by clicking on the app link or hovering over the app box which will expose the following icons to the far right, Delete (trash can), Edit (pen and paper), View (eyeball).  Selecting **View** will also take you to the overview page for that specific app.  Hit **Create Component** in the upper-right or select **Create Component** under *Quick Actions* on the inner side-bar.
@@ -157,12 +157,12 @@ API management is an add-on module to NGINX controller.  In this section you wil
    2. Click the **Add Response** button, enter a response code 200 and enter a description OK.
    3. In the box below add
 
-   ```
-   {
-          "season": "1978",
-          "url": "https://en.wikipedia.org/wiki/1978_Formula_One_season"
-   }
-   ```
+```
+{
+         "season": "1978",
+         "url": "https://en.wikipedia.org/wiki/1978_Formula_One_season"
+}
+```
 
 4. These responses are not required and are can be things like a basic footprint for future development.
 5. Add an additional URI **/drivers** and add the response:
@@ -197,7 +197,7 @@ API management is an add-on module to NGINX controller.  In this section you wil
       curl -k http://localhost/api/f1/drivers/arnold.json
    ```
 
-11. Edit your published API and add a rate limit policy.
+10. Edit your published API and add a rate limit policy.
    1. Select **Add a policy** in the **Policies** section
       1. Set your **Policy Type** to **Rate Limit** and key off of URI with a limit of 10 requests per minute.
       2. Go to the UDF Web Shell and run the following command numerous times:
@@ -206,20 +206,20 @@ API management is an add-on module to NGINX controller.  In this section you wil
          ```
          1. After approximately 10 request you should get the 429 "Too Many Requests" response
          2. **NOTE:** If you rate limit didn't seem to take effect make sure you **Published** the new changes.  If you did not you will see *Edited since last publish* in your API box on the API Definitions overview page.
-12. Once you are done testing you can set your rate limit policy to a higher limit or remove it.
+11. Once you are done testing you can set your rate limit policy to a higher limit or remove it.
 
 ### Adding authentication to you APIs
 
-10. Review the JWT **Identity Provider** under the **API Managment** Section. A JWT has been pre-configured. It is in this GitHub repo and named **auth_jwt_key_file.jwk**.
-11. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token** 
-12. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script.   
+12. Review the JWT **Identity Provider** under the **API Managment** Section. A JWT has been pre-configured. It is in this GitHub repo and named **auth_jwt_key_file.jwk**.
+13. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token** 
+14. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script.   
     1. **sh 3-run-jwt-curl.sh**.
 
    ```
       curl -i http://localhost/api/f1/drivers/arnold.json
       curl -H "Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
    ```
-13.  The first command should return a *401 Authorization Required* response.  The second command should authenticate and return the page successfully.
+15.  The first command should return a *401 Authorization Required* response.  The second command should authenticate and return the page successfully.
 
 #### Building your own JWT/JWKs tokens
 
