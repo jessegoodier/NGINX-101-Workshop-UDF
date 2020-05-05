@@ -149,12 +149,12 @@ API management is an add-on module to NGINX controller.  In this section you wil
 
 1. Navigate to **Services** > **APIs** and view the workload group named **ergast** (ergast.com:80).
 2. Now select **API Definitions** and click **Create an API Definition**.
-   1. Name you API **F1 *Yourname* API** 
+   1. Name you API **F1 *Yourname* API**
    2. Set the *Base path* to **/api/f1**
    3. Hit **Save**
 3. Now in the **URIs** box click **Add a URI**
    1. In the **Path** enter **/seasons** and check the **Enable Documentation** box.
-   2. Click the **Add Response** button, enter a response code 200 and enter a description OK.
+   2. Click the **Add Response** button, enter a response code 200 and enter a description OK
    3. In the box below add
 
 ```
@@ -211,14 +211,15 @@ API management is an add-on module to NGINX controller.  In this section you wil
 ### Adding authentication to your APIs
 
 12. Review the JWT **Identity Provider** under the **API Management** Section. A JWT has been pre-configured. It is in this GitHub repo and named **auth_jwt_key_file.jwk**.
-13. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token** 
-14. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script.   
+13. Go to your API Definition, edit your published API and add a policy to require authentication using the JWT Identity Provider.  APIs will present their credentials using **Bearer Token**
+14. Publish and test a curl commands (below). For the command using the authorization token you could also rung the following script.
     1. **sh 3-run-jwt-curl.sh**.
 
    ```
       curl -i http://localhost/api/f1/drivers/arnold.json
       curl -H "Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImV4cCI6IjE2MDk0NTkxOTkiLCJpc3MiOiJNeSBBUEkgR2F0ZXdheSJ9.lJfCn7b_0mfKHKGk56Iu6CPGdJElG2UhFL64X47vu2M" localhost/api/f1/seasons
    ```
+
 15.  The first command should return a *401 Authorization Required* response.  The second command should authenticate and return the page successfully.
 
 #### Building your own JWT/JWKs tokens
