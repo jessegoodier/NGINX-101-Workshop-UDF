@@ -118,7 +118,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. **sudo nginx -T**
        1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
-28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://3.1.50.39:82> by repeating steps 24-35.
+28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://18.136.200.196:82> by repeating steps 24-35.
     1. Go back to the **Web Console**
        1. **curl localhost/time2**
           1. 1. This should return the timestamp page for API_SERVER: API**2**
@@ -134,7 +134,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 33. Click on **Workload Groups** and add a workload group called **both** with a uri of **/both**.
 34. Add both of our backend workoad URIs:
     1. <http://3.20.98.115:81>
-    2. <http://3.1.50.39:82>
+    2. <http://18.136.200.196:82>
 35. Test the new configuration with a few curl commands on your SSH session:
     1. **curl localhost/time1**
     2. **curl localhost/time2**
