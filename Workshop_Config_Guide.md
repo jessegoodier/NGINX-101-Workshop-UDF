@@ -112,9 +112,9 @@ Components are created from the app overview page. If you are on the **My Apps**
 #### Check your work
 
 26. You can either go back the shell and run a curl or use the browser.
-    1. Shell option: **curl localhost/time1**
+    1. Shell option: **curl localhost/time1** (or if you prefer to test the certificate: **curl --resolve nginx.ddns.net:443:127.0.0.1 https://nginx.ddns.net/time1**)
        1. This should return the timestamp page for API_SERVER: API1
-    2. If you prefer a browser: back in the UDF web console Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**. You will get the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1.
+    2. If you prefer a browser: back in the UDF web console Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**. You will get the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1. Note that the UDF environment masks the upstream URL, but https still works.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. **sudo nginx -T**
        1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
