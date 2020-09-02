@@ -1,0 +1,22 @@
+---
+- hosts: loadbalancers
+  collections:
+    - nginxinc.nginx_controller
+
+  roles:
+  - role: nginx
+    vars:
+      nginx_enable: true
+      nginx_start: true
+      nginx_type: plus
+
+  - role: nginx_controller_generate_token
+    vars:
+      nginx_controller_fqdn: udfcontroller.nginx.rocks
+      nginx_controller_user_email: admin@nginx-udf.internal
+      nginx_controller_user_password: admin123!
+
+  - role: nginx_controller_agent
+    vars:
+      nginx_controller_fqdn: udfcontroller.nginx.rocks
+      nginx_controller_api_key: 1e84033fbfeb7d7cee319c8da45881ff

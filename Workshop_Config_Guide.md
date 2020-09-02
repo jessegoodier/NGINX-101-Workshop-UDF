@@ -27,34 +27,21 @@ You will be accessing the labs using the F5 Unified Demo Framework (UDF).  Chrom
 9. Verify that nginx is not running
    1. **curl localhost**
 10. Take a look at our playbook that will install NGINX Plus. Note the host groups that will be targeted (loadbalancers). Also view the hosts file to see which host(s) will be updated.
-    1. **cat nginx_plus.yaml**
     1. **cat hosts**
-    1. **cat nginx_plus_vars.yaml**
+    2. **cat nginx_install_with_controller_agent.yml**
 11. Note that we have cloned a github repository containing all of the files used in this workshop except the NGINX license certificates. We will need to move the license certificates to the correct folder for the scripts to work.
     1. **cp ~/nginx-repo.\* license/**
-12. Run the Ansible playbook to install NGINX Plus. (use option 1 or 2)
+12. Run the Ansible playbook to install NGINX Plus with the controller agent. (use option 1 or 2)
     1. Full command:
-         **ansible-playbook nginx_plus.yaml -b -i hosts**
+         **ansible-playbook nginx_install_with_controller_agent.yml -b -i hosts**
     2. Scripted equivalent
          **sh 1-run-nginx_plus-playbook.sh**
     Note the output at the end of the command should look something like this: ok=15   changed=7    unreachable=0    failed=0 
 
 ## Open the Controller GUI / Install agent on VM
 
-1. Open <https://controller1.ddns.net> (User: admin@nginx.com / Nginx1122!)
-2. Click the upper left NGINX logo, then click on **Infrastructure**. Note that an instance with your hostname isn't there.
-3. Go back to your **Web Shell** session and run the controller agent install playbook. (use Option 1 or 2 below)
-    1. Full command:
-       ```
-          ansible-playbook nginx_controller_agent_3x.yaml -b -i hosts -e "user_email=admin@nginx.com user_password=Nginx1122! controller_fqdn=controller1.ddns.net"
-       ``` 
-    2. Scripted Equivalent:
-       **sh 2-run-nginx_controller_agent_3x-playbook.sh**
-    Note the output at the end of the command should look something like this: ok=15   changed=3    unreachable=0    failed=0
-    
-## Configure Load Balancing Within Controller GUI
-
-1. Go back to the Controller GUI and go to the **Infrastructure** Overview page.
+1. Open <https://udfcontroller.nginx.rocks> (User: admin@nginx.com / Nginx1122!)
+2. Click the upper left NGINX logo, then click on **Infrastructure**. Note that an instance with your private ip will show in under a minute.
 2. Wait for the new instance to appear and then feel free to change the alias by clicking the **Edit** that appears to the right when hover over your instance
 3. Select **Graphs** on the side bar and then your instance.  You can also edit the name here by clicking on the gear icon next to your instance name.
 
@@ -68,10 +55,10 @@ The Gateway is for traffic aggregation for ingress into the network & nginx inst
 7. At the bottom, under **Environment**, select **production** and hit next.
 8. In the **Placements**, select your NGINX instance, hit **Next**.
 9. Under the hostnames, add
-   1. http://nginx.ddns.net
-   2. https://nginx.ddns.net
+   1. http://www.nginx.rocks
+   2. https://www.nginx.rocks
    3. Be sure to hit **Done** after adding each URI.
-   4. In **Cert Reference** select the **nginx.ddns.net** certificate.
+   4. In **Cert Reference** select the **nginx.rocks** certificate.
    5. In **Protocols** select **All* protocols.
 10. Feel free to view the optional configuration options.
 11. Publish the gateway by clicking on **Submit**. Wait on the **Gateways** screen until the gateway status is green.
@@ -104,7 +91,7 @@ Components are created from the app overview page. If you are on the **My Apps**
 
 **Backend Workload URIs** are the servers that comprise the Workload Group, aka upstream server, (ie. pool member)
 
-22. Add the backend workload URI: <http://3.20.98.115:81>
+22. Add the backend workload URI: <http://time1.nginx.rocks:81>
 23. Be sure to hit **Done** in the *URI* box after adding the URI.
 24. Hit **Submit**.
 25. Wait for the *green* **Status:** Configured next to time1 in the app Overview page or Components section.  If it spins for more than a couple of minutes just hit refresh to see if it finished.
@@ -112,13 +99,13 @@ Components are created from the app overview page. If you are on the **My Apps**
 #### Check your work
 
 26. You can either go back the shell and run a curl or use the browser.
-    1. Shell option: **curl localhost/time1** (or if you prefer to test the certificate: **curl --resolve nginx.ddns.net:443:127.0.0.1 https://nginx.ddns.net/time1**)
+    1. Shell option: **curl localhost/time1** (or if you prefer to test the certificate: **curl --resolve www.nginx.rocks:443:127.0.0.1 https://www.nginx.rocks/time1**)
        1. This should return the timestamp page for API_SERVER: API1
     2. If you prefer a browser: back in the UDF web console Go to UDF Deployment page and under the nginx-plus VM, go to the **Access** drop-down and open the **Web Shell**. You will get the default NGINX 404 error because nothing is configured for the "/" URI.  In the URI bar, add **/time1** to the link.  This should retrieve timestamp for API1. Note that the UDF environment masks the upstream URL, but https still works.
 27. View the changes made to /etc/nginx/nginx.conf on your host.
     1. **sudo nginx -T**
        1. You should see an **upstream time1_http...** section with your **server** 3.20.89.115:81 in it.
-28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://18.136.200.196:82> by repeating steps 24-35.
+28. Add another component to your app named **time2**, with a URI of **/time2** using the server <http://time2.nginx.rocks:82> by repeating steps 24-35.
     1. Go back to the **Web Console**
        1. **curl localhost/time2**
           1. 1. This should return the timestamp page for API_SERVER: API**2**
@@ -133,14 +120,14 @@ Components are created from the app overview page. If you are on the **My Apps**
 32. Click **Done**.
 33. Click on **Workload Groups** and add a workload group called **both** with a uri of **/both**.
 34. Add both of our backend workoad URIs:
-    1. <http://3.20.98.115:81>
-    2. <http://18.136.200.196:82>
+    1. <http://time1.nginx.rocks:81>
+    2. <http://time2.nginx.rocks:82>
 35. Test the new configuration with a few curl commands on your SSH session:
     1. **curl localhost/time1**
     2. **curl localhost/time2**
     3. **curl localhost/both**
        1. Run it several times to see the round robin functionality
-    4. **curl -k <https://localhost/both>**
+    4. **curl --insecure <https://localhost/both>**
        1. Showing that https is listening/working.
 
 ## Configure API Management
@@ -235,6 +222,6 @@ If you have time and are so inclined.
 
 1. Add an alert for too many 500 errors.
 2. Create a dashboard that you think might be useful in a NOC.
-3. Access the Developer API Management Portal: <http://3.14.152.245:8090/docs>
+3. Access the Developer API Management Portal: <http://18.222.224.129:8090/docs>
 
 ***Feel free to browse around the GUI to see other functionality.***
